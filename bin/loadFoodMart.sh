@@ -5,7 +5,7 @@
 # http://www.eclipse.org/legal/epl-v10.html.
 # You must accept the terms of that agreement to use this software.
 #
-# Copyright (C) 2008-2012 Pentaho and others
+# Copyright (C) 2008-2018 Hitachi Vantara and others
 # All Rights Reserved.
 #
 # Sample scripts to load Mondrian's database for various databases.
@@ -88,6 +88,15 @@ mysql() {
          -jdbcDrivers=com.mysql.jdbc.Driver \
          -inputFile=demo/FoodMartCreateData.sql \
          -outputJdbcURL="jdbc:mysql://localhost/foodmart?user=foodmart&password=foodmart"
+}
+
+mariadb() {
+    java -cp "${CP}${PS}/jdbc/lib/mariadb-java-client-1.4.6.jar" \
+         mondrian.test.loader.MondrianFoodMartLoader \
+         -verbose -aggregates -tables -data -indexes \
+         -jdbcDrivers=org.mariadb.jdbc.Driver \
+         -inputFile=demo/FoodMartCreateData.sql \
+         -outputJdbcURL="jdbc:mariadb://localhost/foodmart?user=foodmart&password=foodmart"
 }
 
 nuodb() {
@@ -238,6 +247,7 @@ infobright \
 luciddb \
 monetdb \
 mysql \
+mariadb \
 nuodb \
 oracle \
 oracleTrickle \
@@ -263,6 +273,7 @@ case "$db" in
 (luciddb) luciddb;;
 (monetdb) monetdb;;
 (mysql) mysql;;
+(mariadb) mariadb;;
 (nuodb) nuodb;;
 (oracle) oracle;;
 (oracleTrickle) oracleTrickle;;

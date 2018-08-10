@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# ***************************************************************************
+# This software is subject to the terms of the Eclipse Public License v1.0
+# Agreement, available at the following URL:
+# http://www.eclipse.org/legal/epl-v10.html.
+# You must accept the terms of that agreement to use this software.
+#
+# Copyright (c) 2005-2018 Hitachi Vantara..  All rights reserved.
+# ***************************************************************************
+
 declare -r DIR=$(dirname $0)
 
 LOCATION="$PWD/$DIR"
@@ -21,6 +30,7 @@ CLASSPATH=$CLASSPATH:$MONDRIAN_LIB/commons-vfs.jar
 CLASSPATH="$CLASSPATH:$MONDRIAN_LIB/commons-logging.jar"
 
 CLASSPATH=$CLASSPATH:$MONDRIAN_TEST_LIB/mysql-connector-java-3.1.7-bin.jar
+CLASSPATH=$CLASSPATH:$MONDRIAN_TEST_LIB/mariadb-java-client-1.4.6.jar
 CLASSPATH=$CLASSPATH:$MONDRIAN_TEST_LIB/ojdbc14.jar
 CLASSPATH=$CLASSPATH:$MONDRIAN_TEST_LIB/junit.jar
 CLASSPATH=$CLASSPATH:$MONDRIAN_TEST_LIB/derby.jar
@@ -38,6 +48,10 @@ CATALOG_URL="file://localhost${MONDRIAN_HOME}/demo/FoodMart.xml"
 # mysql 
 JDBC_DRIVER=com.mysql.jdbc.Driver
 JDBC_URL="jdbc:mysql://localhost/foodmart?user=foodmart&password=foodmart"
+
+# mariadb 
+#JDBC_DRIVER=org.mariadb.jdbc.Driver
+#JDBC_URL="jdbc:mariadb://localhost/foodmart?user=foodmart&password=foodmart"
 
 # Derby
 #JDBC_DRIVER=org.apache.derby.jdbc.EmbeddedDriver
